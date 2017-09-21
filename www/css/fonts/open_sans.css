@@ -1,0 +1,83 @@
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('Open_Sans/open-sans-regular.eot'); /* IE9 Compat Modes */
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+       url('Open_Sans/open-sans-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Open_Sans/open-sans-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('Open_Sans/open-sans-regular.woff') format('woff'), /* Modern Browsers */
+       url('Open_Sans/open-sans-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('Open_Sans/open-sans-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+/* open-sans-600 - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('Open_Sans/open-sans-600.eot'); /* IE9 Compat Modes */
+  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'),
+       url('Open_Sans/open-sans-600.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Open_Sans/open-sans-600.woff2') format('woff2'), /* Super Modern Browsers */
+       url('Open_Sans/open-sans-600.woff') format('woff'), /* Modern Browsers */
+       url('Open_Sans/open-sans-600.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('Open_Sans/open-sans-600.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+/* open-sans-700 - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('Open_Sans/open-sans-700.eot'); /* IE9 Compat Modes */
+  src: local('Open Sans Bold'), local('OpenSans-Bold'),
+       url('Open_Sans/open-sans-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Open_Sans/open-sans-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('Open_Sans/open-sans-700.woff') format('woff'), /* Modern Browsers */
+       url('Open_Sans/open-sans-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('Open_Sans/open-sans-700.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+/* open-sans-800 - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('Open_Sans/open-sans-800.eot'); /* IE9 Compat Modes */
+  src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'),
+       url('Open_Sans/open-sans-800.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Open_Sans/open-sans-800.woff2') format('woff2'), /* Super Modern Browsers */
+       url('Open_Sans/open-sans-800.woff') format('woff'), /* Modern Browsers */
+       url('Open_Sans/open-sans-800.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('Open_Sans/open-sans-800.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+/* open-sans-condensed-300 - latin */
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 300;
+  src: url('Open_Sans/open-sans-condensed-300.eot'); /* IE9 Compat Modes */
+  src: local('Open Sans Condensed Light'), local('OpenSansCondensed-Light'),
+       url('Open_Sans/open-sans-condensed-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Open_Sans/open-sans-condensed-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('Open_Sans/open-sans-condensed-300.woff') format('woff'), /* Modern Browsers */
+       url('Open_Sans/open-sans-condensed-300.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('Open_Sans/open-sans-condensed-300.svg#OpenSansCondensed') format('svg'); /* Legacy iOS */
+}
+
+/* open-sans-condensed-700 - latin */
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: url('Open_Sans/open-sans-condensed-700.eot'); /* IE9 Compat Modes */
+  src: local('Open Sans Condensed Bold'), local('OpenSansCondensed-Bold'),
+       url('Open_Sans/open-sans-condensed-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('Open_Sans/open-sans-condensed-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('Open_Sans/open-sans-condensed-700.woff') format('woff'), /* Modern Browsers */
+       url('Open_Sans/open-sans-condensed-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('Open_Sans/open-sans-condensed-700.svg#OpenSansCondensed') format('svg'); /* Legacy iOS */
+}

@@ -1,0 +1,144 @@
+<!-- We don't need a full layout in this file because this page will be parsed with Ajax. -->
+
+<!-- Top Navbar-->
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="left home-btn">
+        	 <a href="index.html" class="link back" data-force="true">
+                <i class="typcn typcn-home"></i>
+            </a>    
+        </div>
+        <div class="center sliding logo">DebtZapper</div>
+    </div>
+</div>
+<div class="pages">
+    <div data-page="get_started" class="page">
+        <div class="page-content">
+            <div class="content-block">
+            	<div class="content-inner">
+					<ul class="steps">
+						<li id="step1" class="active"><span class="step-marker">1</span> Add<br>Debt<span class="clr"></span></li>
+						<li id="step2"><span class="step-marker">2</span> Add<br>Income<span class="clr"></span></li>
+						<li id="step3"><span class="step-marker">3</span> Create<br>Plan<span class="clr"></span></li>
+					</ul>
+        			<div id="step-add-debt">
+						<h2>Let's Get Started By Adding Your Debt</h2>
+						<p>After this, you can add your income and come up with a strategy</p>
+         				<form id="debt-form">
+         					<div class="form-group">
+         						<label for="">Title:</label>
+								<input type="text" name="debt_title" value="">
+							</div>
+							<div class="form-group">
+         						<label for="">Beginning Balance:</label>
+								<input type="text" name="beg_balance" value="">
+							</div>
+							<div class="form-group">
+         						<label for="">Beginning Date:</label>
+								<input type="date" name="beg_date" value="">
+							</div>
+							<div class="form-group">
+         						<label for="">Loan Term (months):</label>
+								<input type="text" name="loan_term" value="">
+							</div>
+							<div class="form-group">
+         						<label for="">Current Balance:</label>
+								<input type="text" name="cur_balance" value="">
+							</div>
+							<div class="form-group">
+         						<label for="">Interest Rate:</label>
+								<input type="text" name="int_rate" value=""> %
+							</div>
+							<div class="form-group">
+         						<label for="">Due Date:</label>
+								<select name="due_date">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+									<option value="11">11</option>
+									<option value="12">12</option>
+									<option value="13">13</option>
+									<option value="14">14</option>
+									<option value="15">15</option>
+									<option value="16">16</option>
+									<option value="17">17</option>
+									<option value="18">18</option>
+									<option value="19">19</option>
+									<option value="20">20</option>
+									<option value="21">21</option>
+									<option value="22">22</option>
+									<option value="23">23</option>
+									<option value="24">24</option>
+									<option value="25">25</option>
+									<option value="26">26</option>
+									<option value="27">27</option>
+									<option value="28">28</option>
+									<option value="29">29</option>
+									<option value="30">30</option>
+									<option value="31">31</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-primary saveDebtbtn">Save</button>
+							</div>
+						</form>
+         			</div>
+         			<div id="step-add-income">
+						<h2>Great, now let's add your income</h2>
+						<p>You may skip this part if you like, but it will help calculate your strategy in the next step</p>
+         				<form id="income-form">
+         					<div class="form-group">
+         						<label for="">Title:</label>
+								<input type="text" name="income_title" value="">
+							</div>
+							<div class="form-group">
+         						<label for="">Amount:</label>
+								<input type="text" name="inc_amount" value="">
+							</div>
+							<div class="form-group">
+         						<label for="">How Often:</label>
+								<select name="income_often">
+									<option value="weekly">Weekly</option>
+									<option value="monthly">Every Two Weeks</option>
+									<option value="monthly">Bi-Monthly</option>
+									<option value="monthly">Monthly</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-primary saveIncomebtn">Save</button>
+							</div>
+						</form>
+         			</div>
+         			<div id="step-add-plan">
+						<h2>Awesome, just one step left</h2>
+						<p>Choose the strategy to pay down your debt</p>
+         				<form id="plan-form">
+         					<div class="form-group">
+								<input id="lb1" type="radio" name="strategy" value="low_balance_first"/><label for="lb1">Pay Lowest Balance First (Recommended)</label>
+							</div>
+							<div class="form-group">
+								<input id="lb2" type="radio" name="strategy" value="high_interest_first"/><label for="lb2">Pay Highest Interest Rate First</label>
+							</div>
+							<div class="form-group">
+								<input id="lb3" type="radio" name="strategy" value="high_balance_first"/><label for="lb3">Pay Highest Balance First</label>
+							</div>
+							<div class="form-group">
+								<input id="lb4" type="radio" name="strategy" value="low_interest_first"/><label for="lb4">Pay Lowest Interest Rate First</label>
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-primary savePlanbtn">Save</button>
+							</div>
+						</form>
+         			</div>
+          		</div>
+            </div>
+      	</div>
+    </div>
+</div>

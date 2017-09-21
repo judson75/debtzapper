@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>DebtZapper</title>
+    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.min.css">
+    <link rel="stylesheet" href="lib/framework7/css/framework7.ios.colors.min.css">
+   	<link rel="stylesheet" href="css/fonts/typicons.min.css" />
+   	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/jquery.circliful.css" type="text/css" />
+    <link rel="stylesheet" href="css/fonts/open_sans.css" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/inappstyles.css">
+</head>
+
+<body>
+	<!-- Login Screen -->
+	<div class="login-screen">
+ 		<!-- Default view-page layout -->
+      	<div class="view">
+        	<div class="page">
+          		<!-- page-content has additional login-screen content -->
+          		<div class="page-content login-screen-content">
+            		<div class="login-screen-title">LoanZapper</div>
+            		<!-- Login form -->
+            		<form id="login-form">
+	              		<div class="list-block">
+	                		<ul>
+	                  			<li class="item-content">
+	                    			<div class="item-inner">
+	                      				<div class="item-title label"><i class="typcn typcn-mail"></i></div>
+	                      				<div class="item-input">
+	                        				<input type="text" name="email" placeholder="Email Address">
+	                      				</div>
+	                    			</div>
+	                  			</li>
+	                  			<li class="item-content">
+	                    			<div class="item-inner">
+	                      				<div class="item-title label"><i class="typcn typcn-lock-closed-outline"></i></div>
+	                      				<div class="item-input">
+	                        				<input type="password" name="password" placeholder="Password">
+	                      				</div>
+	                    			</div>
+	                  			</li>
+	                		</ul>
+	              		</div>
+	              		<div class="list-block">
+	                		<ul>
+	                  			<li class="item-content">
+	                    			<a href="#" class="btn btn-primary loginBtn">Sign In</a> <a href="#" class="btn btn-danger close-login-screen">Cancel</a>
+	                  			</li>
+	                		</ul>
+	                		<div class="list-block-label">
+	                			<p style="font-size: 18px;"><a href="lost_password.html" class="close-login-screen">I forgot my password</a></p>
+	                		</div>
+	                		<div class="list-block-label">
+	                			<p>If you do not have an account, register by <a href="signup.html" class="close-login-screen">clicking here</a></p>
+	                		</div>
+	              		</div>
+            		</form>
+          		</div>
+        	</div>
+      	</div>
+	</div>
+    <!-- Status bar overlay for full screen mode (PhoneGap) -->
+    <div class="statusbar-overlay"></div>
+
+    <!-- Panels overlay-->
+    <div class="panel-overlay"></div>
+    <!-- Left panel with reveal effect-->
+    <div class="panel panel-left panel-reveal">
+        <div class="content-block alerts-container">
+            <p>Left panel content goes here</p>
+        </div>
+    </div>
+	<!-- Views -->
+    <div class="views">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+            <!-- Top Navbar-->
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
+                    <div class="center sliding logo">DebtZapper</div>
+                    <div class="right">
+                    	<div class="halerts"><a href="alerts.html" class="link icon-only"><i class="typcn typcn-bell showAlertsBtn"></i></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pages navbar-through toolbar-through">
+                <div data-page="index" class="page">
+                    <div class="page-content">
+                    	<div class="dashboard-container">
+	                        <input type="hidden" id="acct-id-input" name="id" value="">
+							<input type="hidden" id="user-id-input" name="user_id" value="">
+							<input type="hidden" id="int-saved-input" name="int_saved" value="">
+							<input type="hidden" id="saved-percent-input" name="saved_percent" value="">
+							<input type="hidden" id="start-date-input" name="start_date" value="">
+							<input type="hidden" id="account-title-input" name="account_title" value="">
+							<input type="hidden" id="account-number-input" name="account_number" value="">
+							<input type="hidden" id="loan-term-input" name="loan_term" value="">
+							<input type="hidden" id="due-date-input" name="due_date" value="">
+							<input type="hidden" id="int-rate" name="int_rate" value="">
+							<input type="hidden" id="loan-amount-input" name="loan_amount" value="">
+							<input type="hidden" id="loan-years-input" name="loan_years" value="">
+							<div id="dashboard-container"></div>
+						</div>
+                   		
+                    </div>
+                </div>
+            </div>
+            <!-- Bottom Toolbar-->
+            <div class="toolbar">
+                <div class="toolbar-inner">
+                    <!-- Toolbar links -->
+                    <a href="#" class="refresh-tool"><i class="typcn typcn-arrow-sync refreshBtn"></i></a>
+                    <a href="info.html" class="help-tool"><i class="typcn typcn typcn-info"></i> Info Center</a>
+                    <!--<a href="#" class="link icon-only open-panel"><i class="typcn typcn-cog"></i></a>-->
+                    <a href="settings.html" class="settings-tool"><i class="typcn typcn-cog"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app-modal" id="">
+		<div class="modal-header">
+			<div class="modal-close"><i class="fa fa-times" aria-hidden="true"></i></div>
+			<div class="app-modal-title"></div>
+		</div>
+		<div class="modal-body"></div>
+		<div class="modal-footer"></div>
+	
+	</div>
+	<div id="confirm">
+	    <div class="title"></div>
+		<button type="button" id="btnYes">Yes</button>
+		<button type="button" id="btnNo">No</button>
+	</div>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+	<script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/jquery.circliful.min.js"></script>
+    <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
