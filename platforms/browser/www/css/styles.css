@@ -57,6 +57,7 @@ small {
 	font-size: 11px;
 	text-transform: uppercase;
 	color: #999;
+	line-height: 1.2em;
 }
 
 hr {
@@ -66,6 +67,7 @@ hr {
 	margin: 15px 0;
 }
 
+.sliding { text-align: left; }
 .page-overlay {
 	position: absolute;
 	left: 0;
@@ -80,9 +82,51 @@ hr {
 	transition-duration: .4s;
 	z-index: 5000;
 }
+
 .table {
 	width: 100%;
 	border-collapse: collapse;
+	margin: 15px 0;
+}
+
+.table td{
+	padding: 3px;
+}
+
+table.striped {
+	
+}
+
+table.striped tr {
+	border-bottom: 1px solid #ccc;
+}
+
+table.striped tr:nth-child(odd) {
+	background: #f9f9f9;	
+}
+
+table.striped tr:hover {
+	background: #ebebeb;	
+}
+
+.table h3 {
+	margin: 0 0 0 0;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 150px;
+}
+
+td.actions {
+	text-align: right;
+	white-space: nowrap;
+}
+
+td.actions .btn {
+	font-size: 18px !important;
+	width: auto !important;
+	padding: 0 5px !important;
+	
 }
 
 .loading {
@@ -142,6 +186,14 @@ hr {
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-weight:600;
 	font-size: 26px;
+
+}
+
+.modal-header .app-modal-title {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 280px;
 }
 
 .modal-close{
@@ -340,6 +392,10 @@ hr {
 	color: #d6003c;
 }
 
+.helper.success {
+	color: #20a34e;
+}
+
 /* Checkbox */
 input[type=checkbox] { display:none; } /* to hide the checkbox itself */
 input[type=checkbox] + label {
@@ -405,6 +461,8 @@ input[type=radio]:checked + label:before {
 } /* checked icon */
 input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space for check mark */
 
+p { color: #666; }
+.center { text-align: center; }
 
 .btn {
 	font-size: 18px;
@@ -553,6 +611,16 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 	color: #d6003c;
 }
 
+.alert-info {
+	border: 2px solid #2259a3;
+	color: #2259a3;
+}
+
+.alert-default {
+	border: 2px solid #f2625a;
+	color: #f2625a;
+}
+
 .statusbar-overlay {
     background: #000000;
 }
@@ -564,6 +632,11 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 	height: 50px;
 	border: 0;
 
+}
+
+.right a {
+	color: #fff;
+	font-size: 28px;
 }
 
 .navbar-fixed .page-content, .navbar-through .page-content {
@@ -628,8 +701,29 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 
 .logo {
 	font-family: 'Open Sans Condensed', sans-serif;
-	font-size: 24px !important;
-	font-weight: 700 !important;
+	font-size: 26px !important;
+	font-weight: 500 !important;
+}
+
+.left-nav-container {
+	
+}
+
+.left-nav-container ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.left-nav-container ul li {
+	
+}
+
+.left-nav-container ul li a {
+	color: #fff;
+	font-size: 16px;
+	padding: 7px 0;
+	display: block;
 }
 
 .halerts {
@@ -637,14 +731,13 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 	position: relative;
 	font-size: 30px;
 	cursor: pointer;
-	border-left: 1px solid #35a6d0;
-	border-right: 1px solid #216882;
 	padding: 0 5px;
 	margin: 0 -8px 0 0;
+	font-weight: 300;
 }
 
 	.halerts a {
-		color: #fff;
+		
 	}
 
 .alert-count {
@@ -663,7 +756,7 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 }
 
 .page {
-	background: #f2eff7;
+	background: #fff;
 
 }
 
@@ -693,6 +786,21 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 	padding: 20px 15px;
 }
 
+.content-block-inner::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: auto;
+    top: auto;
+    height: 0;
+    width: 100%;
+    background-color: #fff;
+    display: block;
+    z-index: 15;
+    -webkit-transform-origin: 50% 100%;
+    transform-origin: 50% 100%;
+}
 .content-inner {
 	padding: 15px 15px;
 }
@@ -752,12 +860,52 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 /* Dashboard */
 
 .dashboard-container {
-	padding: 15px 15px;
+	padding: 15px 15px 44px;
+}
+
+.dashboard-container .alert {
+	padding: 8px 8px;
+	font-size: 12px;
+	margin: 6px 0;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.dashboard-container .alert .alert-acct-title {
+	display: inline-block;
+	width: 130px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: text-top;
+}
+
+.dashboard-container .alert .alert-acct-text {
+	display: inline-block;
+	vertical-align: text-top;
+	margin-left: 5px;
 }
 
 .payoff-center {
 	text-align: center;
 	margin: 0 0 10px 0;
+}
+
+#et-info {
+	text-align: center;
+}
+
+.et-title {
+	font-size: 32px;
+	font-weight: 600;
+	display: block;
+	line-height:  1.2em;
+	margin-top: 10px;
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.et-title small {
+	margin-bottom: 10px;
+
 }
 
 #accts-list {
@@ -767,15 +915,22 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 }
 
 #accts-list li {
-	padding: 10px 0;
-	border-bottom: 1px dashed #000;
+	padding: 20px 0;
+	border-bottom: 1px dashed #ccc;
 }
 
 
 	#accts-list li:last-child {
 		border-bottom: none;
 	}
-
+	
+#accts-list li .alert:first-child {
+	
+}
+#accts-list li .alert {
+	margin-bottom: 15px;
+	margin-top: -10px;
+}
 .phase-bubble {
 	background: #329cc3;
 	border-radius: 50%;
@@ -794,13 +949,13 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 }
 
 .phase-title {
-	font-size: 10px;
+	font-size: 11px;
 	display: block;
-	line-height: 1em;
+	line-height: 1.2em;
 }
 
 .phase-count {
-	font-size: 35px;
+	font-size: 38px;
 	display: block;
 	line-height: 1em;
 }
@@ -814,11 +969,11 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 .accounts {
 	float: left;
 	display: inline-block;
-	width: 80%;
+	width: 90%;
 }
 .account {
 	padding: 5px 0;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #f1f1f1;
 }
 
 	.account:last-child {
@@ -835,7 +990,8 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 }
 .account-balance {
 	display: inline-block;
-	width: 40%;
+	width: 39%;
+	margin-left: 1%;
 	vertical-align: middle;
 }
 .account-actions {
@@ -898,15 +1054,123 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 	display: none;
 }
 
-/* Account Overview */
-.account-data {
-	font-weight: bold;
-}
-
-.account-input {
+/*Overview */
+#overview-container {
 	
 }
 
+#overview-container hr {
+	margin: 15px auto;
+	max-width: 50%;
+}
+
+.ov-label {
+	text-align: center;
+	font-size: 14px;
+	color: #999;
+}
+
+.ov-total {
+	font-size: 62px;
+	text-align: center;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 600;
+}
+
+.ov-total small {
+	font-weight: 200;
+}
+
+.ov-link {
+	text-align: center;
+}
+
+.ov-text {
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+    font-size: 25px;
+    margin: 10px 0 20px;
+}
+
+.ov-subtext {
+	font-size: 11px;
+	text-transform: uppercase;
+	color: #999;
+	text-align: center;
+}
+
+#bills-container .ov-total, #income-container .ov-total, #debt-container .ov-total {
+	font-size: 42px;
+	text-align: center;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 600;
+}
+
+
+/* Account Overview */
+
+.acct-form-grp {
+	margin: 8px 0;
+}
+
+.acct-form-grp label {
+	display: inline-block;
+	width: 140px;
+	
+}
+
+.acct-form-grp b {
+	font-size: 16px;
+}
+
+.account-data {
+	font-weight: bold;
+	font-size: 16px;
+	padding: 4px 3px;
+}
+
+.account-input {
+	display: none;
+	width: 150px;
+	font-weight: bold;
+	font-size: 14px;
+	vertical-align: middle;
+	margin: -2px 0 0 0;
+}
+
+.account-input input, .account-input select {
+	font-weight: bold;
+	font-size: 16px;
+	width: 120px;
+	vertical-align: middle;
+	display: inline-block;
+	border: 0;
+	border-bottom: 1px solid #ccc;
+	margin-right: 5px;
+	padding: 5px;
+}
+
+.account-input .btn {
+    max-width: 25px;
+    padding: 3px !important;
+	padding: 2px 3px !important;
+	vertical-align: middle;
+	font-size: 16px !important;
+}
+
+.ta1 {
+	border: 1px solid #ccc;
+	resize: none;
+	width: 300px;
+	height: 120px;
+}
+
+.saveNotesBtn {
+	max-width: 300px;
+	font-size: 16px !important;
+	display: block;
+}
 
 @media (max-width: 480px) {
 	
@@ -921,12 +1185,16 @@ input[type=radio]:checked + label:before { letter-spacing: 5px; } /* allow space
 	.accounts {
 		float: left;
 		display: inline-block;
-		width: 70%;
+		width: 73%;
 		margin-top: -3px;
 	}
 	
 	.account {
 		font-size: 14px;	
+	}
+	
+	.account-balance {
+		padding-left: 10px;
 	}
 
 }

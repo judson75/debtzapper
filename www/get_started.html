@@ -34,6 +34,10 @@
 								<input type="text" name="beg_balance" value="">
 							</div>
 							<div class="form-group">
+         						<label for="">Monthly Payment:</label>
+								<input type="text" name="monthly_payment" value="">
+							</div>
+							<div class="form-group">
          						<label for="">Beginning Date:</label>
 								<input type="date" name="beg_date" value="">
 							</div>
@@ -90,6 +94,60 @@
 							</div>
 						</form>
          			</div>
+         			<div id="step-add-bills">
+						<h2>Great, now let's add your bills</h2>
+						<p>You may skip this part if you like, but it will help calculate your strategy in the final step</p>
+        				<p>
+        					Some examples would be utilities, groceries, etc.
+        					<ul>
+        						
+        					</ul>
+        				</p>
+         				<form id="bill-form">
+         					<div class="form-group">
+         						<label for="">Title:</label>
+         						<select name="bill_category">
+         							<option value="Alimony">Alimony</option>
+         							<option value="Child Support">Child Support</option>
+         							<option value="Entertainment">Entertainment</option>
+         							<option value="Groceries">Groceries</option>
+         							<option value="Gym Membership">Gym Membership</option>
+         							<option value="Retirement">Retirement</option>
+         							<option value="Savings">Savings</option>
+         							<option value="Subscriptions">Subscriptions</option>
+         							<optgroup label="Transportation">
+         								<option value="Gas">Gas</option>
+         								<option value="Maintenance">Maintenance</option>
+         								<option value="Public Transportation">Public Transportation</option>
+         								<option value="Auto Insurance">Auto Insurance</option>
+									</optgroup>
+         							<optgroup label="Utilities">
+         								<option value="Electricity Bill">Electricity Bill</option>
+         								<option value="Water/Sewage">Water/Sewage</option>
+         								<option value="Cable/Internet">Cable/Internet</option>
+         							</optgroup>
+									<option value="Other">Other</option>
+         						</select>
+								<input type="text" name="bill_title" value="">
+							</div>
+							<div class="form-group">
+         						<label for="">Amount:</label>
+								<input type="text" name="bill_amount" value="">
+							</div>
+							<div class="form-group">
+         						<label for="">How Often:</label>
+								<select name="bill_often">
+									<option value="weekly">Weekly</option>
+									<option value="bi-weekly">Every Two Weeks</option>
+									<option value="semi-monthly">Semi-Monthly</option>
+									<option value="monthly">Monthly</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<button type="button" class="btn btn-primary saveIncomebtn">Save</button>
+							</div>
+						</form>
+         			</div>
          			<div id="step-add-income">
 						<h2>Great, now let's add your income</h2>
 						<p>You may skip this part if you like, but it will help calculate your strategy in the next step</p>
@@ -106,8 +164,8 @@
          						<label for="">How Often:</label>
 								<select name="income_often">
 									<option value="weekly">Weekly</option>
-									<option value="monthly">Every Two Weeks</option>
-									<option value="monthly">Bi-Monthly</option>
+									<option value="bi-weekly">Every Two Weeks</option>
+									<option value="semi-monthly">Semi-Monthly</option>
 									<option value="monthly">Monthly</option>
 								</select>
 							</div>
@@ -132,9 +190,17 @@
 							<div class="form-group">
 								<input id="lb4" type="radio" name="strategy" value="low_interest_first"/><label for="lb4">Pay Lowest Interest Rate First</label>
 							</div>
+							
+							
+							<p>Choose the estimated amount to apply to pay off strategy</p>
+							<div class="form-group">
+								<input id="payoff_earmark" type="text" name="payoff_earmark" value=""/>
+							</div>
+							
 							<div class="form-group">
 								<button type="button" class="btn btn-primary savePlanbtn">Save</button>
 							</div>
+							
 						</form>
          			</div>
           		</div>
