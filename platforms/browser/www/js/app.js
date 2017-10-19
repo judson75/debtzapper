@@ -402,8 +402,7 @@ $$(document).on('pageInit', function (e) {
 						page_html += '<td class="actions"><button class="btn btn-xs btn-primary editDebt" data-id="' + data.id + '"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-danger deleteDebt" data-id="' + data.id + '"><i class="fa fa-trash"></i></button></td>';
 						page_html += '</tr>';
 					});
-					tdebt
-					page_html += '<tr><td><h3>Total debt</h3></td>' + tdebt + '<td></td><td></td></tr>';
+					page_html += '<tr class="row-total"><td><h3>Total Debt</h3></td>' + tdebt.formatMoney(2, '.', ',') + '<td></td><td></td></tr>';
 					page_html += '</table>';
 					$('#debt-container').html(page_html);
 				}
@@ -441,6 +440,7 @@ $$(document).on('pageInit', function (e) {
 					
 					page_html += '<div class="ov-label">Total Income</div>';
 					page_html += '<div class="ov-total">$' + obj.data.total_income.formatMoney(2, '.', ',') + ' <small>per mo.</small></div>';
+					var tinc = obj.data.total_income;
 					delete obj.data.total_income;
 					page_html += '<hr>';
 					page_html += '<div class=""><button class="btn btn-secondary addIncome">+ Add Income</button></div>';
@@ -456,7 +456,7 @@ $$(document).on('pageInit', function (e) {
 						page_html += '<td class="actions"><button class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button></td>';
 						page_html += '</tr>';
 					});
-					
+					page_html += '<tr class="row-total"><td><h3>Total Income</h3></td>' + tinc.formatMoney(2, '.', ',') + '<td></td><td></td></tr>';
 					page_html += '</table>';
 					$('#income-container').html(page_html);
 				}
@@ -493,6 +493,7 @@ $$(document).on('pageInit', function (e) {
 					
 					page_html += '<div class="ov-label">Total Bills</div>';
 					page_html += '<div class="ov-total">$' + obj.data.total_bills.formatMoney(2, '.', ',') + ' <small>per mo.</small></div>';
+					var tbills = obj.data.total_bills;
 					delete obj.data.total_bills;
 					page_html += '<hr>';
 					page_html += '<div class=""><button class="btn btn-secondary addBill">+ Add Bill</button></div>';
@@ -508,7 +509,7 @@ $$(document).on('pageInit', function (e) {
 						page_html += '<td class="actions"><button class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button></td>';
 						page_html += '</tr>';
 					});
-					
+					page_html += '<tr class="row-total"><td><h3>Total Bills</h3></td>' + tbills.formatMoney(2, '.', ',') + '<td></td><td></td></tr>';
 					page_html += '</table>';
 					$('#bills-container').html(page_html);
 				}
@@ -1769,12 +1770,12 @@ function buildDashboard() {
 							});
 						}
 						//extra pay
-						dashboard_html += '<div class="alert alert-default">Phase Earmark: $' + parseFloat(phase.extra_pay).formatMoney(2, '.', ',') + '</div>';
-						if(phase.weeks < 53) {
+						dashboard_html += '<div class="alert alert-default">' + phase.acct_title + ' Pymt: $' + parseFloat(phase.original_payment).formatMoney(2, '.', ',') + '. Extra Pymt: $' + parseFloat(phase.extra_pay).formatMoney(2, '.', ',') + '</div>';
+						if(phase.weeks < 4) {
 							var weeks = phase.weeks + ' Wks';
 						}
 						else if(phase.months < 25) {
-							var weeks = phase.months + ' Mo.';
+							var weeks = phase.months.toFixed(0) + ' Mo.';
 						}
 						else {
 							//var weeks = round(($phase['months']/12), 1) . ' Years';
@@ -1798,6 +1799,7 @@ function buildDashboard() {
 					var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',');
 					var decimal_places = 2;
 					var decimal_factor = decimal_places === 0 ? 1 : Math.pow(10, decimal_places);
+					setTimeout(function(){ 
 						$('#roll-months').animateNumber(
 						  {
 							number: parseFloat(months_saved).toFixed(1),
@@ -1819,7 +1821,7 @@ function buildDashboard() {
 						  }
 						);
 
-			
+					}, 100);
 				}
 				
 				$('#dashboard-container').html(dashboard_html);
