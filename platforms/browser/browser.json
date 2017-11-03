@@ -37,6 +37,12 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.loanzapper.app"
+        },
+        "cordova-admob": {
+            "PACKAGE_NAME": "com.debtzapper.app"
+        },
+        "cordova-connectivity-monitor": {
+            "PACKAGE_NAME": "com.debtzapper.app"
         }
     },
     "dependent_plugins": {},
@@ -159,6 +165,40 @@
             "id": "cordova-plugin-splashscreen.SplashScreenProxy",
             "pluginId": "cordova-plugin-splashscreen",
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-admob/www/admob.js",
+            "id": "cordova-admob.AdMobAds",
+            "pluginId": "cordova-admob",
+            "clobbers": [
+                "window.admob",
+                "window.tappx"
+            ]
+        },
+        {
+            "file": "plugins/cordova-admob/www/admob.js",
+            "id": "cordova-admob.AdMobAds",
+            "pluginId": "cordova-admob",
+            "clobbers": [
+                "window.admob",
+                "window.tappx"
+            ]
+        },
+        {
+            "file": "plugins/cordova-connectivity-monitor/www/connectivity.js",
+            "id": "cordova-connectivity-monitor.connectivity",
+            "pluginId": "cordova-connectivity-monitor",
+            "clobbers": [
+                "window.connectivity"
+            ]
+        },
+        {
+            "file": "plugins/cordova-connectivity-monitor/www/connectivity.js",
+            "id": "cordova-connectivity-monitor.connectivity",
+            "pluginId": "cordova-connectivity-monitor",
+            "clobbers": [
+                "window.connectivity"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -171,6 +211,8 @@
         "cordova-plugin-apprate": "1.3.0",
         "cordova-plugin-globalization": "1.0.7",
         "cordova-plugin-themeablebrowser": "0.2.17",
-        "cordova-plugin-splashscreen": "4.0.3"
+        "cordova-plugin-splashscreen": "4.0.3",
+        "cordova-admob": "4.1.16",
+        "cordova-connectivity-monitor": "1.2.2"
     }
 }

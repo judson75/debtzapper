@@ -79,6 +79,14 @@ $$(document).on('deviceready', function() {
 	AppRate.preferences.displayAppName = 'LoanZapper';
 	AppRate.preferences.usesUntilPrompt = 10;
 	AppRate.promptForRating(false);
+	
+	admob.setOptions({
+        publisherId:          "ca-app-pub-8378702511170577~2230427469",  // Required
+        interstitialAdId:     "ca-app-pub-8378702511170577/3396524698",  // Optional
+        tappxIdiOS:           "/XXXXXXXXX/Pub-XXXX-iOS-IIII",            // Optional
+        tappxIdAndroid:       "/XXXXXXXXX/Pub-XXXX-Android-AAAA",        // Optional
+        tappxShare:           0.5                                        // Optional
+    });
 })
 
 $$(document).on('pageReinit', function (e) {
@@ -2189,7 +2197,8 @@ function buildDashboard() {
 
 					}, 100);
 				}
-				
+				dashboard_html += admob.createBannerView();
+
 				$('#dashboard-container').html(dashboard_html);
 				
 				
