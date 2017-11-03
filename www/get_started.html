@@ -197,6 +197,20 @@
 								<input id="payoff_earmark" type="text" name="payoff_earmark" value=""/>
 							</div>
 							
+							<p>Choose the rollover method</p>
+							<div class="form-group">
+								<input id="lb5" type="radio" name="rollover" value="double_up"/><label for="lb5">Double Up</label>
+								<div class="helper">This will double your earmark value each time a debt is paid off</div>
+							</div>
+							<div class="form-group">
+								<input id="lb6" type="radio" name="rollover" value="pickup_payments"/><label for="lb6">Pickup Payments</label>
+								<div class="helper">This will add a paid off debt payment to your earmark</div>
+							</div>
+							<div class="form-group">
+								<input id="lb7" type="radio" name="rollover" value="keep_earmark"/><label for="lb7">Keep Same</label>
+								<div class="helper">This will keep your earmark the same through your payoff strategy</div>
+							</div>
+							
 							<div class="form-group">
 								<button type="button" class="btn btn-primary savePlanbtn">Save</button>
 							</div>

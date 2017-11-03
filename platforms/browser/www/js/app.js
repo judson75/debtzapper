@@ -282,7 +282,7 @@ $$(document).on('pageInit', function (e) {
 					page_html += '<div class="ov-label">Monthly Earmark</div>';
 					page_html += '<div class="ov-text">' + obj.data.payoff_earmark + '</div>';
 					page_html += '<hr>';
-					page_html += '<div class="ov-label">Payoff Rollover</div>';
+					page_html += '<div class="ov-label">Payoff Rollover Method</div>';
 					page_html += '<div class="ov-text">' + obj.data.rollover + '</div>';
 					page_html += '<div class="ov-subtext">' + obj.data.rollover_info + '</div>';
 					
@@ -390,10 +390,10 @@ $$(document).on('pageInit', function (e) {
 					delete obj.data.total_debt;
 					page_html += '<hr>';
 					page_html += '<div class=""><button class="btn btn-secondary addDebt">+ Add Debt</button></div>';
-					page_html += '<table class="table striped">';
+					page_html += '<table class="table striped" id="debt-table">';
 					$.each( obj.data, function( i, data ) {
 						//
-						page_html += '<tr>';
+						page_html += '<tr id="tr-' + data.id + '">';
 						page_html += '<td>';
 						page_html += '<h3>' + data.title + '</h3>';
 						page_html += '<small>Int. Rate: <b>' + data.int_rate + '%</b><br>Bal.: <b>$' + parseFloat(data.cur_balance).formatMoney(2, '.', ',') + '</b></small>';
@@ -402,7 +402,7 @@ $$(document).on('pageInit', function (e) {
 						page_html += '<td class="actions"><button class="btn btn-xs btn-primary editDebt" data-id="' + data.id + '"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-danger deleteDebt" data-id="' + data.id + '"><i class="fa fa-trash"></i></button></td>';
 						page_html += '</tr>';
 					});
-					page_html += '<tr class="row-total"><td><h3>Total Debt</h3></td>' + tdebt.formatMoney(2, '.', ',') + '<td></td><td></td></tr>';
+					page_html += '<tr class="row-total"><td><h3>Total Debt</h3></td><td>$' + tdebt.formatMoney(2, '.', ',') + '<small>/mo.</small></td><td></td></tr>';
 					page_html += '</table>';
 					$('#debt-container').html(page_html);
 				}
@@ -453,10 +453,10 @@ $$(document).on('pageInit', function (e) {
 						page_html += '<small>$' + data.amount + ' ' + data.freq + '</small>';
 						page_html += '</td>';
 						page_html += '<td>$' +  parseFloat(data.total_monthly).formatMoney(2, '.', ',') + '<small>/mo.</small></td>';
-						page_html += '<td class="actions"><button class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button></td>';
+						page_html += '<td class="actions"><button class="btn btn-xs btn-primary editIncome" data-id="' + data.id + '"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-danger deleteIncome" data-id="' + data.id + '"><i class="fa fa-trash"></i></button></td>';
 						page_html += '</tr>';
 					});
-					page_html += '<tr class="row-total"><td><h3>Total Income</h3></td>' + tinc.formatMoney(2, '.', ',') + '<td></td><td></td></tr>';
+					page_html += '<tr class="row-total"><td><h3>Total Income</h3></td><td>$' + tinc.formatMoney(2, '.', ',') + '<small>/mo.</small></td><td></td></tr>';
 					page_html += '</table>';
 					$('#income-container').html(page_html);
 				}
@@ -506,10 +506,10 @@ $$(document).on('pageInit', function (e) {
 						page_html += '<small>$' + data.amount + ' ' + data.freq + '</small>';
 						page_html += '</td>';
 						page_html += '<td>$' + parseFloat(data.total_monthly).formatMoney(2, '.', ',') + '<small>/mo.</small></td>';
-						page_html += '<td class="actions"><button class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button></td>';
+						page_html += '<td class="actions"><button class="btn btn-xs btn-primary editBill" data-id="' + data.id + '"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-danger deleteBill" data-id="' + data.id + '"><i class="fa fa-trash"></i></button></td>';
 						page_html += '</tr>';
 					});
-					page_html += '<tr class="row-total"><td><h3>Total Bills</h3></td>' + tbills.formatMoney(2, '.', ',') + '<td></td><td></td></tr>';
+					page_html += '<tr class="row-total"><td><h3>Total Bills</h3></td><td>$' + tbills.formatMoney(2, '.', ',') + '<small>/mo.</small></td><td></td></tr>';
 					page_html += '</table>';
 					$('#bills-container').html(page_html);
 				}
@@ -801,11 +801,56 @@ $(window).bind('load resize scroll',function(e){
 	console.log("TOTAL ON SCREEN: " + $('.ov-total').isOnScreen());
 });
 
+
+$(document).on('click', '.addDebt', function() {
+	var user_id = getStorage('user_id');
+	var form_html = '';
+	form_html += '<form id="add-debt-frm">';
+	form_html += '<div class="form-group"><label for="title">Title:</label><input type="text" name="title" id="title" value=""></div>';
+	form_html += '<div class="form-group"><label for="monthly_payment">Mo. Payment:</label><input type="text" name="monthly_payment" id="monthly_payment" value=""></div>';
+	form_html += '<div class="form-group"><label for="beg_balance">Beginning Balance:</label><input type="text" name="beg_balance" id="beg_balance" value=""></div>';
+	form_html += '<div class="form-group"><label for="cur_balance">Current Balance:</label><input type="text" name="cur_balance" id="cur_balance" value=""></div>';
+	form_html += '<div class="form-group"><label for="beg_date">Beginning Date:</label><input type="text" name="beg_date" id="beg_date" value=""></div>';
+	form_html += '<div class="form-group"><label for="loan_term">Loan Term:</label><input type="text" name="loan_term" id="loan_term" value=""></div>';
+	form_html += '<div class="form-group"><label for="int_rate">Interest Rate:</label><input type="text" name="int_rate" id="int_rate" value=""></div>';
+	form_html += '<div class="form-group"><label for="due_date">Due Date:</label>';
+	form_html += '<select class="" name="due_date" id="due_date">';
+	form_html += '<option value="">Due Date</option>';
+	for (i = 1; i <= 31; i++) {
+		var j = i % 10,
+			k = i % 100;
+		if (j == 1 && k != 11) {
+			var nth = i + "st";
+		}
+		else if (j == 2 && k != 12) {
+			var nth = i + "nd";
+		}
+		else if (j == 3 && k != 13) {
+			var nth = i + "rd";
+		}
+		else {
+			var nth = i + "th";
+		}
+		form_html += '<option value="' + i + '"';
+		//if(obj.data.due_date == i) {
+		//  form_html += ' selected';
+		//}
+		form_html += '>' + nth + '</option>';
+	} 
+	form_html += '</select></div>';
+	form_html += '<div class="form-group"><label for="notes">Notes:</label><textarea name="account_notes"></textarea></div>';
+	form_html += '<div class="form-group"><button type="button" class="btn btn-primary half addDebtBtn">Save</button> <button type="button" class="btn btn-danger half closeModal">Cancel</button></div>';
+	form_html += '</form>';
+	$('.app-modal-title').html('Add Debt');
+	$('.modal-body').html(form_html);
+	$('.app-modal').attr('id', 'add-debt-modal');
+	modalOpen('add-debt-modal');
+});
+
 $(document).on('click', '.editDebt', function() {
 	var id = $(this).attr('data-id');
 	var user_id = getStorage('user_id');
 	//Get Debt Info
-	$('.app-modal-title').html('Edit Debt');
 	var form_html = '';
 	$$.ajax({
 		url : serviceURL,
@@ -828,6 +873,7 @@ $(document).on('click', '.editDebt', function() {
 			/*console.log('Resp: ' + obj.code);*/
 			if(obj.resp === true) {
 				form_html += '<form id="edit-debt-frm">';
+				form_html += '<input type="hidden" name="id" value="' + id + '">';
 				form_html += '<div class="form-group"><label for="title">Title:</label><input type="text" name="title" id="title" value="' + obj.data.title + '"></div>';
 				form_html += '<div class="form-group"><label for="monthly_payment">Mo. Payment:</label><input type="text" name="monthly_payment" id="monthly_payment" value="' + obj.data.monthly_payment + '">';
 				form_html += '<div class="form-group"><label for="beg_balance">Beginning Balance:</label><input type="text" name="beg_balance" id="beg_balance" value="' + obj.data.beg_balance + '">';
@@ -836,8 +882,8 @@ $(document).on('click', '.editDebt', function() {
 				form_html += '<div class="form-group"><label for="loan_term">Loan Term:</label><input type="text" name="loan_term" id="loan_term" value="' + obj.data.loan_term + '">';
 				form_html += '<div class="form-group"><label for="int_rate">Interest Rate:</label><input type="text" name="int_rate" id="int_rate" value="' + obj.data.int_rate + '">';
 				form_html += '<div class="form-group"><label for="due_date">Due Date:</label><input type="text" name="title" value="">';
-				form_html += '<div class="form-group"><label for="notes">Notes:</label><textarea name="note">' + obj.data.notes + '</textarea>';
-				form_html += '<div class="form-group"></div>';
+				form_html += '<div class="form-group"><label for="notes">Notes:</label><textarea name="note">' + obj.data.account_notes + '</textarea>';
+				form_html += '<div class="form-group"><button type="button" class="saveDebtChangesBtn btn btn-primary half">Save Changes</button> <button type="button" class="btn btn-danger closeModal half">Cancel</button></div>';
 				form_html += '</form>';
 				$('.app-modal-title').html('Edit Debt - ' + obj.data.title);
 				$('.modal-body').html(form_html);
@@ -855,7 +901,325 @@ $(document).on('click', '.editDebt', function() {
 			loading('hide');
 		}
 	});
-})
+});
+
+$(document).on('click', '.saveDebtChangesBtn', function() {
+	var error_count = 0;
+	$('.helper').remove();
+	var id = $('#edit-debt-frm input[name="id"]').val();
+	var title = $('#edit-debt-frm input[name="id"]').val();
+	var monthly_payment = $('#edit-debt-frm input[name="id"]').val();
+	var beg_balance = $('#edit-debt-frm input[name="id"]').val();
+	var cur_balance = $('#edit-debt-frm input[name="id"]').val();
+	var beg_date = $('#edit-debt-frm input[name="id"]').val();
+	var loan_term = $('#edit-debt-frm input[name="id"]').val();
+	var int_rate = $('#edit-debt-frm input[name="id"]').val();
+	var due_date = $('#edit-debt-frm input[name="id"]').val();
+	var notes = $('#edit-debt-frm input[name="id"]').val();
+	if(title == '') {
+		$('#edit-debt-frm input[name="debt_title"]').addClass('hasError');
+		$('#edit-debt-frm input[name="debt_title"]').after('<div class="helper error">You must enter a title</div>');
+		error_count++;
+	}
+	if(int_rate == '') {
+		$('#edit-debt-frm input[name="int_rate"]').addClass('hasError');
+		$('#edit-debt-frm input[name="int_rate"]').after('<div class="helper error">You must enter an interest rate</div>');
+		error_count++;
+	}
+	if(beg_balance == '') {
+		$('#edit-debt-frm input[name="beg_balance"]').addClass('hasError');
+		$('#edit-debt-frm input[name="beg_balance"]').after('<div class="helper error">You must enter a beginning balance</div>');
+		error_count++;
+	}
+	if(beg_date == '') {
+		$('#edit-debt-frm input[name="beg_date"]').addClass('hasError');
+		$('#edit-debt-frm input[name="beg_date"]').after('<div class="helper error">You must enter a beginning date</div>');
+		error_count++;
+	}
+	if(cur_balance == '') {
+		$('#edit-debt-frm input[name="cur_balance"]').addClass('hasError');
+		$('#edit-debt-frm input[name="cur_balance"]').after('<div class="helper error">You must enter a current balance</div>');
+		error_count++;
+	}
+	if(due_date == '') {
+		$('#edit-debt-frm select[name="due_date"]').addClass('hasError');
+		$('#edit-debt-frm select[name="due_date"]').after('<div class="helper error">You must enter a due date</div>');
+		error_count++;
+	}
+	if(loan_term == '') {
+		$('#edit-debt-frm input[name="loan_term"]').addClass('hasError');
+		$('#edit-debt-frm input[name="loan_term"]').after('<div class="helper error">You must enter a loan term</div>');
+		error_count++;
+	}
+	if(monthly_payment == '') {
+		$('#edit-debt-frm input[name="monthly_payment"]').addClass('hasError');
+		$('#edit-debt-frm input[name="monthly_payment"]').after('<div class="helper error">You must enter your monthly payment</div>');
+		error_count++;
+	}
+	if(error_count > 0 ) {
+
+		return false;
+	}
+	$$.ajax({
+		url : serviceURL,
+		type : 'POST',
+		data : {
+			'method': 'post',
+			'action': 'debt',
+			'format': 'json',
+			'id' : id,
+			'user_id' : user_id, 
+			'title': title, 
+			'int_rate': int_rate, 
+			'beg_balance': beg_balance, 
+			'cur_balance': cur_balance, 
+			'due_date': due_date, 
+			'beg_date': beg_date, 
+			'loan_term': loan_term,
+			'monthly_payment': monthly_payment,
+		},
+		dataType: 'html',
+		beforeSend: function() {
+			loading('show');
+	  	},
+		success : function(data) {
+			console.log("DATA: " + data);
+			var obj = $.parseJSON(data);
+			if(obj.code === 1) {
+				//show confirm
+				
+				
+			}
+			else {
+				loading('hide');
+				$('#debt-form').prepend('<div class="alert alert-error">' + obj.msg + '</div>');
+			}
+		},
+		error : function(request,error) {
+			console.log("Request (error): "+JSON.stringify(request));
+			loading('hide');
+		}
+	});
+});
+
+$(document).on('click', '.addDebtBtn', function() {
+	//We will save via ajax, once saved, ask to add another debt or proceed to income
+	var error_count = 0;
+	$('.helper').remove();
+	var user_id = getStorage('user_id');
+	var title = $('#add-debt-frm input[name="title"]').val();
+	var int_rate = $('#add-debt-frm input[name="int_rate"]').val();
+	var beg_balance = $('#add-debt-frm input[name="beg_balance"]').val();
+	var beg_date = $('#add-debt-frm input[name="beg_date"]').val();
+	var loan_term = $('#add-debt-frm input[name="loan_term"]').val();
+	var cur_balance = $('#add-debt-frm input[name="cur_balance"]').val(); 
+	var due_date = $('#add-debt-frm select[name="due_date"]').val();
+	var monthly_payment = $('#add-debt-frm input[name="monthly_payment"]').val();
+	var account_notes = $('#add-debt-frm textarea[name="account_notes"]').val();
+	if(title == '') {
+		$('#add-debt-frm input[name="title"]').addClass('hasError');
+		$('#add-debt-frm input[name="title"]').after('<div class="helper error">You must enter a title</div>');
+		error_count++;
+	}
+	if(int_rate == '') {
+		$('#add-debt-frm input[name="int_rate"]').addClass('hasError');
+		$('#add-debt-frm input[name="int_rate"]').after('<div class="helper error">You must enter an interest rate</div>');
+		error_count++;
+	}
+	if(beg_balance == '') {
+		$('#add-debt-frm input[name="beg_balance"]').addClass('hasError');
+		$('#add-debt-frm input[name="beg_balance"]').after('<div class="helper error">You must enter a beginning balance</div>');
+		error_count++;
+	}
+	if(beg_date == '') {
+		$('#add-debt-frm input[name="beg_date"]').addClass('hasError');
+		$('#add-debt-frm input[name="beg_date"]').after('<div class="helper error">You must enter a beginning date</div>');
+		error_count++;
+	}
+	if(cur_balance == '') {
+		$('#add-debt-frm input[name="cur_balance"]').addClass('hasError');
+		$('#add-debt-frm input[name="cur_balance"]').after('<div class="helper error">You must enter a current balance</div>');
+		error_count++;
+	}
+	if(due_date == '') {
+		$('#add-debt-frm select[name="due_date"]').addClass('hasError');
+		$('#add-debt-frm select[name="due_date"]').after('<div class="helper error">You must enter a due date</div>');
+		error_count++;
+	}
+	if(loan_term == '') {
+		$('#add-debt-frm input[name="loan_term"]').addClass('hasError');
+		$('#add-debt-frm input[name="loan_term"]').after('<div class="helper error">You must enter a loan term</div>');
+		error_count++;
+	}
+	if(monthly_payment == '') {
+		$('#add-debt-frm input[name="monthly_payment"]').addClass('hasError');
+		$('#add-debt-frm input[name="monthly_payment"]').after('<div class="helper error">You must enter your monthly payment</div>');
+		error_count++;
+	}
+	if(error_count > 0 ) {
+		//$('#add-debt-frm').prepend('<div class="alert alert-error">Please fix errors!</div>');
+		return false;
+	}
+	$$.ajax({
+		url : serviceURL,
+		type : 'POST',
+		data : {
+			'method': 'post',
+			'action': 'debt',
+			'format': 'json',
+			'user_id' : user_id, 
+			'title': title, 
+			'int_rate': int_rate, 
+			'beg_balance': beg_balance, 
+			'cur_balance': cur_balance, 
+			'due_date': due_date, 
+			'beg_date': beg_date, 
+			'loan_term': loan_term,
+			'monthly_payment': monthly_payment,
+			'account_notes': account_notes,
+		},
+		dataType: 'html',
+		beforeSend: function() {
+			loading('show');
+	  	},
+		success : function(data) {
+			console.log("DATA: " + data);
+			var obj = $.parseJSON(data);
+			var page_html = '';
+			if(obj.code === 1) {
+				//close modal
+				loading('hide');
+				modalClose();
+				$('#debt-table').before('<div class="alert alert-success">Your debt has been added</div>');
+				page_html += '<tr id="tr-' + obj.id + '">';
+				page_html += '<td>';
+				page_html += '<h3>' + title + '</h3>';
+				page_html += '<small>Int. Rate: <b>' + int_rate + '%</b><br>Bal.: <b>$' + parseFloat(cur_balance).formatMoney(2, '.', ',') + '</b></small>';
+				page_html += '</td>';
+				page_html += '<td>$' + monthly_payment + '</td>';
+				page_html += '<td class="actions"><button class="btn btn-xs btn-primary editDebt" data-id="' + obj.id + '"><i class="fa fa-pencil"></i></button> <button class="btn btn-xs btn-danger deleteDebt" data-id="' + obj.id + '"><i class="fa fa-trash"></i></button></td>';
+				page_html += '</tr>';
+				$('#debt-table').append(page_html);
+				//location.reload();
+			}
+			else {
+				loading('hide');
+				$('#add-debt-frm').prepend('<div class="alert alert-error">' + obj.msg + '</div>');
+			}
+		},
+		error : function(request,error) {
+			console.log("Request (error): "+JSON.stringify(request));
+			loading('hide');
+		}
+	});
+});
+
+$(document).on('click', '.deleteDebt', function() {
+	var id = $(this).attr('data-id');
+	var user_id = getStorage('user_id');
+	$('.alert').remove();
+	confirm_dialog('<h3>Are you sure you want to delete this debt?</h3><p>This debt will be permanently removed.</p>', 'Proceed', 'Cancel',
+		function() {
+			//yes clicked - clear Form and show
+			$$.ajax({
+				url : serviceURL,
+				type : 'POST',
+				data : {
+					'method': 'delete',
+					'action': 'debt',
+					'format': 'json',
+					'id': id,
+					'user_id': user_id
+				},
+				dataType: 'html',
+				beforeSend: function() {
+					loading('show');
+				},
+				success : function(data) {
+					console.log('Data: ' + data);
+					var obj = $.parseJSON(data);
+					loading('hide');
+					$('#tr-' + id).remove();
+					$('#debt-table').before('<div class="alert alert-success">Your debt has been deleted</div>');
+				},
+				error : function(request,error) {
+					$('.login-screen-title').after('<div class="alert alert-error list-block">An unknown error occured. Please try back again later.</div>');
+					console.log("Request (error): "+JSON.stringify(request));
+					loading('hide');
+				}
+			});
+		},
+		function() {
+			//No -- 
+		}
+	);
+});
+
+$(document).on('click', '.addBill', function() {
+	var user_id = getStorage('user_id');
+	$('.app-modal-title').html('Add Bill');
+	var form_html = '';
+	$('.modal-body').html(form_html);
+	$('.app-modal').attr('id', 'add-bill-modal');
+	modalOpen('add-bill-modal');
+});
+
+$(document).on('click', '.editBill', function() {
+	var user_id = getStorage('user_id');
+	var id = $(this).attr('data-id');
+	$('.app-modal-title').html('Edit Bill');
+	var form_html = '';
+	$('.modal-body').html(form_html);
+	$('.app-modal').attr('id', 'edit-bill-modal');
+	modalOpen('edit-bill-modal');
+});
+
+$(document).on('click', '.deleteBill', function() {
+	var id = $(this).attr('data-id');
+	var user_id = getStorage('user_id');
+	confirm_dialog('<h3>Are you sure you want to delete this bill?</h3><p>This bill will be permanently removed.</p>', 'Proceed', 'Cancel',
+		function() {
+			//yes clicked - clear Form and show
+			alert("DELETE");
+		},
+		function() {
+			//No -- 
+		}
+	);
+});
+
+$(document).on('click', '.addIncome', function() {
+	var user_id = getStorage('user_id');
+	$('.app-modal-title').html('Add Income');
+	var form_html = '';
+	$('.modal-body').html(form_html);
+	$('.app-modal').attr('id', 'add-bill-modal');
+	modalOpen('add-income-modal');
+});
+
+$(document).on('click', '.editIncome', function() {
+	var user_id = getStorage('user_id');
+	var id = $(this).attr('data-id');
+	$('.app-modal-title').html('Edit Income');
+	var form_html = '';
+	$('.modal-body').html(form_html);
+	$('.app-modal').attr('id', 'edit-income-modal');
+	modalOpen('edit-income-modal');
+});
+
+$(document).on('click', '.deleteIncome', function() {
+	var id = $(this).attr('data-id');
+	var user_id = getStorage('user_id');
+	confirm_dialog('<h3>Are you sure you want to delete this income?</h3><p>This income will be permanently removed.</p>', 'Proceed', 'Cancel',
+		function() {
+			//yes clicked - clear Form and show
+			alert("DELETE");
+		},
+		function() {
+			//No -- 
+		}
+	);
+});
 
 $(document).on('click', '.signupBtn', function() {
 	$('.alert').remove();
@@ -1212,7 +1576,9 @@ $(document).on('click', '.saveIncomebtn', function() {
 	});
 });
 
-
+$(document).on('click', '.modal-close, .closeModal', function() {
+	modalClose();
+})
 
 $(document).on('click', '.savePlanbtn', function() {
 	//We will save via ajax, once saved, ask to add another debt or proceed to income
