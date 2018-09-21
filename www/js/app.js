@@ -87,7 +87,7 @@ $$(document).on('deviceready', function() {
         tappxIdAndroid:       "/XXXXXXXXX/Pub-XXXX-Android-AAAA",        // Optional
         tappxShare:           0.5                                        // Optional
     });
-})
+});
 
 $$(document).on('pageReinit', function (e) {
     // Get page data from event data
@@ -196,7 +196,7 @@ $$(document).on('pageInit', function (e) {
 					form_html += '<label for="">Beginning Balance:</label><b>$<span class="account-data">' + obj.data.beg_balance + '</span><span class="account-input"><input type="text" name="beg_balance" class="" value="' + obj.data.beg_balance + '"><button type="button" class="btn btn btn-primary btn-sm saveAcctBtn"><i class="fa fa-floppy-o"></i></button></span></b>';
 					form_html += '</div>';
 					form_html += '<div class="acct-form-grp">';
-					form_html += '<label for="">Beginning Date:</label><b><span class="account-data">' + obj.data.beg_date_formatted + '</span><span class="account-input"><input type="text" name="beg_date" class="" value="' + obj.data.beg_date + '"><button type="button" class="btn btn btn-primary btn-sm saveAcctBtn"><i class="fa fa-floppy-o"></i></button></span></b>';
+					form_html += '<label for="">Start Date:</label><b><span class="account-data">' + obj.data.beg_date_formatted + '</span><span class="account-input"><input type="date" name="beg_date" class="" value="' + obj.data.beg_date + '"><button type="button" class="btn btn btn-primary btn-sm saveAcctBtn"><i class="fa fa-floppy-o"></i></button></span></b>';
 					form_html += '</div>';
 					form_html += '<div class="acct-form-grp">';
 					form_html += '<label for="">Loan Term (months):</label><b><span class="account-data">' + obj.data.loan_term + '</span><span class="account-input"><input type="text" name="loan_term" class="" value="' + obj.data.loan_term + '"><button type="button" class="btn btn btn-primary btn-sm saveAcctBtn"><i class="fa fa-floppy-o"></i></button></span></b>';
@@ -1169,6 +1169,53 @@ $(document).on('click', '.addBill', function() {
 	var form_html = '';
 	$('.modal-body').html(form_html);
 	$('.app-modal').attr('id', 'add-bill-modal');
+	var form_html = '';
+	form_html += '<form id="bill-form">';
+	form_html += '<div class="form-group">';
+	form_html += '<label for="">Title:</label>';
+	form_html += '<select name="bill_category">';
+	form_html += '<option value="Alimony">Alimony</option>';
+	form_html += '<option value="Child Support">Child Support</option>';
+	form_html += '<option value="Entertainment">Entertainment</option>';
+	form_html += '<option value="Groceries">Groceries</option>';
+	form_html += '<option value="Gym Membership">Gym Membership</option>';
+	form_html += '<option value="Retirement">Retirement</option>';
+	form_html += '<option value="Savings">Savings</option>';
+	form_html += '<option value="Subscriptions">Subscriptions</option>';
+	form_html += '<optgroup label="Transportation">';
+	form_html += '<option value="Gas">Gas</option>';
+	form_html += '<option value="Maintenance">Maintenance</option>';
+	form_html += '<option value="Public Transportation">Public Transportation</option>';
+	form_html += '<option value="Auto Insurance">Auto Insurance</option>';
+	form_html += '</optgroup>';
+	form_html += '<optgroup label="Utilities">';
+	form_html += '<option value="Electricity Bill">Electricity Bill</option>';
+	form_html += '<option value="Water/Sewage">Water/Sewage</option>';
+	form_html += '<option value="Cable/Internet">Cable/Internet</option>';
+	form_html += '</optgroup>';
+	form_html += '<option value="Other">Other</option>';
+	form_html += '</select>';
+	form_html += '<input type="text" name="bill_title" value="">';
+	form_html += '</div>';
+	form_html += '<div class="form-group">';
+	form_html += '<label for="">Amount:</label>';
+	form_html += '<input type="text" name="bill_amount" value="">';
+	form_html += '</div>';
+	form_html += '<div class="form-group">';
+	form_html += '<label for="">How Often:</label>';
+	form_html += '<select name="bill_often">';
+	form_html += '<option value="weekly">Weekly</option>';
+	form_html += '<option value="bi-weekly">Every Two Weeks</option>';
+	form_html += '<option value="semi-monthly">Semi-Monthly</option>';
+	form_html += '<option value="monthly">Monthly</option>';
+	form_html += '</select>';
+	form_html += '</div>';
+	form_html += '<div class="form-group">';
+	form_html += '<button type="button" class="btn btn-primary addIncomebtn">Save</button>';
+	form_html += '</div>';
+	form_html += '</form>';
+	$('.modal-body').html(form_html);
+	
 	modalOpen('add-bill-modal');
 });
 
@@ -1177,6 +1224,52 @@ $(document).on('click', '.editBill', function() {
 	var id = $(this).attr('data-id');
 	$('.app-modal-title').html('Edit Bill');
 	var form_html = '';
+	
+	var form_html = '';
+	form_html += '<form id="bill-form">';
+	form_html += '<div class="form-group">';
+	form_html += '<label for="">Title:</label>';
+	form_html += '<select name="bill_category">';
+	form_html += '<option value="Alimony">Alimony</option>';
+	form_html += '<option value="Child Support">Child Support</option>';
+	form_html += '<option value="Entertainment">Entertainment</option>';
+	form_html += '<option value="Groceries">Groceries</option>';
+	form_html += '<option value="Gym Membership">Gym Membership</option>';
+	form_html += '<option value="Retirement">Retirement</option>';
+	form_html += '<option value="Savings">Savings</option>';
+	form_html += '<option value="Subscriptions">Subscriptions</option>';
+	form_html += '<optgroup label="Transportation">';
+	form_html += '<option value="Gas">Gas</option>';
+	form_html += '<option value="Maintenance">Maintenance</option>';
+	form_html += '<option value="Public Transportation">Public Transportation</option>';
+	form_html += '<option value="Auto Insurance">Auto Insurance</option>';
+	form_html += '</optgroup>';
+	form_html += '<optgroup label="Utilities">';
+	form_html += '<option value="Electricity Bill">Electricity Bill</option>';
+	form_html += '<option value="Water/Sewage">Water/Sewage</option>';
+	form_html += '<option value="Cable/Internet">Cable/Internet</option>';
+	form_html += '</optgroup>';
+	form_html += '<option value="Other">Other</option>';
+	form_html += '</select>';
+	form_html += '<input type="text" name="bill_title" value="">';
+	form_html += '</div>';
+	form_html += '<div class="form-group">';
+	form_html += '<label for="">Amount:</label>';
+	form_html += '<input type="text" name="bill_amount" value="">';
+	form_html += '</div>';
+	form_html += '<div class="form-group">';
+	form_html += '<label for="">How Often:</label>';
+	form_html += '<select name="bill_often">';
+	form_html += '<option value="weekly">Weekly</option>';
+	form_html += '<option value="bi-weekly">Every Two Weeks</option>';
+	form_html += '<option value="semi-monthly">Semi-Monthly</option>';
+	form_html += '<option value="monthly">Monthly</option>';
+	form_html += '</select>';
+	form_html += '</div>';
+	form_html += '<div class="form-group">';
+	form_html += '<button type="button" class="btn btn-primary addIncomebtn">Save</button>';
+	form_html += '</div>';
+	form_html += '</form>';
 	$('.modal-body').html(form_html);
 	$('.app-modal').attr('id', 'edit-bill-modal');
 	modalOpen('edit-bill-modal');
@@ -1188,7 +1281,34 @@ $(document).on('click', '.deleteBill', function() {
 	confirm_dialog('<h3>Are you sure you want to delete this bill?</h3><p>This bill will be permanently removed.</p>', 'Proceed', 'Cancel',
 		function() {
 			//yes clicked - clear Form and show
-			alert("DELETE");
+			//alert("DELETE");
+			$$.ajax({
+				url : serviceURL,
+				type : 'POST',
+				data : {
+					'method': 'delete',
+					'action': 'bill',
+					'format': 'json',
+					'id': id,
+					'user_id': user_id
+				},
+				dataType: 'html',
+				beforeSend: function() {
+					loading('show');
+				},
+				success : function(data) {
+					console.log('Data: ' + data);
+					var obj = $.parseJSON(data);
+					loading('hide');
+					$('#tr-' + id).remove();
+					$('#debt-table').before('<div class="alert alert-success">Your debt has been deleted</div>');
+				},
+				error : function(request,error) {
+					$('.login-screen-title').after('<div class="alert alert-error list-block">An unknown error occured. Please try back again later.</div>');
+					console.log("Request (error): "+JSON.stringify(request));
+					loading('hide');
+				}
+			});
 		},
 		function() {
 			//No -- 
@@ -2197,7 +2317,7 @@ function buildDashboard() {
 
 					}, 100);
 				}
-				dashboard_html += admob.createBannerView();
+				//dashboard_html += admob.createBannerView();
 
 				$('#dashboard-container').html(dashboard_html);
 				

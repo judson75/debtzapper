@@ -364,22 +364,30 @@ tr.row-total td {
 .form-group label {
 	font-family: 'Open Sans', sans-serif;
 	display: inline-block;
-	margin-right: 10px;
-	margin-bottom: 5px;
+	margin: 10px 5px 5px 0;
 	font-weight: 700;
-	width: 100px;
+	width: 105px;
 	font-size: 13px;
-	vertical-align: middle;
+	vertical-align: top;
 }
 
-.form-group input[type=text], .form-group select, .form-group input[type=password], .form-group input[type=date] {
+.form-group input[type=text], .form-group select, .form-group input[type=password], .form-group input[type=date], .form-group textarea {
 	/*max-width: 400px;
 	width: 100%;*/
-	width: 160px;
+	width: 180px;
 	font-size: 16px;
 	border: 1px solid #ccc;
 	font-family: arial, san-serif;
 	padding: 8px;
+}
+
+.form-group textarea {
+	height: 150px;
+	resize: none;
+}
+
+.form-group input[type=text].full, .form-group select.full, .form-group input[type=password].full, .form-group input[type=date].full {
+	width: 100%;
 }
 
 .helper {

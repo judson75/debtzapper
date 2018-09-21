@@ -152,6 +152,15 @@ module.exports = [
         "clobbers": [
             "window.connectivity"
         ]
+    },
+    {
+        "file": "plugins/phonegap-admob/www/admob.js",
+        "id": "phonegap-admob.AdMobAds",
+        "pluginId": "phonegap-admob",
+        "clobbers": [
+            "window.admob",
+            "window.tappx"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -168,7 +177,8 @@ module.exports.metadata =
     "cordova-plugin-themeablebrowser": "0.2.17",
     "cordova-plugin-splashscreen": "4.0.3",
     "cordova-admob": "4.1.16",
-    "cordova-connectivity-monitor": "1.2.2"
+    "cordova-connectivity-monitor": "1.2.2",
+    "phonegap-admob": "4.1.15"
 }
 // BOTTOM OF METADATA
 });

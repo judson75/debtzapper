@@ -43,6 +43,9 @@
         },
         "cordova-connectivity-monitor": {
             "PACKAGE_NAME": "com.debtzapper.app"
+        },
+        "phonegap-admob": {
+            "PACKAGE_NAME": "com.debtzapper.app"
         }
     },
     "dependent_plugins": {},
@@ -199,6 +202,15 @@
             "clobbers": [
                 "window.connectivity"
             ]
+        },
+        {
+            "file": "plugins/phonegap-admob/www/admob.js",
+            "id": "phonegap-admob.AdMobAds",
+            "pluginId": "phonegap-admob",
+            "clobbers": [
+                "window.admob",
+                "window.tappx"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -213,6 +225,7 @@
         "cordova-plugin-themeablebrowser": "0.2.17",
         "cordova-plugin-splashscreen": "4.0.3",
         "cordova-admob": "4.1.16",
-        "cordova-connectivity-monitor": "1.2.2"
+        "cordova-connectivity-monitor": "1.2.2",
+        "phonegap-admob": "4.1.15"
     }
 }

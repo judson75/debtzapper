@@ -96,5 +96,13 @@
         },
         "is_top_level": false,
         "variables": {}
+    },
+    "phonegap-admob": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-admob"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
