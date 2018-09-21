@@ -80,5 +80,29 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-admob": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-admob"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-connectivity-monitor": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-connectivity-monitor"
+        },
+        "is_top_level": false,
+        "variables": {}
+    },
+    "phonegap-admob": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-admob"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

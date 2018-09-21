@@ -31,6 +31,12 @@
         },
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "com.loanzapper.app"
+        },
+        "cordova-admob": {
+            "PACKAGE_NAME": "com.debtzapper.app"
+        },
+        "phonegap-admob": {
+            "PACKAGE_NAME": "com.debtzapper.app"
         }
     },
     "dependent_plugins": {
@@ -39,6 +45,9 @@
         },
         "cordova-plugin-globalization": {
             "PACKAGE_NAME": "com.loanzapper.app"
+        },
+        "cordova-connectivity-monitor": {
+            "PACKAGE_NAME": "com.debtzapper.app"
         }
     }
 }

@@ -118,6 +118,49 @@ module.exports = [
         "id": "cordova-plugin-splashscreen.SplashScreenProxy",
         "pluginId": "cordova-plugin-splashscreen",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-admob/www/admob.js",
+        "id": "cordova-admob.AdMobAds",
+        "pluginId": "cordova-admob",
+        "clobbers": [
+            "window.admob",
+            "window.tappx"
+        ]
+    },
+    {
+        "file": "plugins/cordova-admob/www/admob.js",
+        "id": "cordova-admob.AdMobAds",
+        "pluginId": "cordova-admob",
+        "clobbers": [
+            "window.admob",
+            "window.tappx"
+        ]
+    },
+    {
+        "file": "plugins/cordova-connectivity-monitor/www/connectivity.js",
+        "id": "cordova-connectivity-monitor.connectivity",
+        "pluginId": "cordova-connectivity-monitor",
+        "clobbers": [
+            "window.connectivity"
+        ]
+    },
+    {
+        "file": "plugins/cordova-connectivity-monitor/www/connectivity.js",
+        "id": "cordova-connectivity-monitor.connectivity",
+        "pluginId": "cordova-connectivity-monitor",
+        "clobbers": [
+            "window.connectivity"
+        ]
+    },
+    {
+        "file": "plugins/phonegap-admob/www/admob.js",
+        "id": "phonegap-admob.AdMobAds",
+        "pluginId": "phonegap-admob",
+        "clobbers": [
+            "window.admob",
+            "window.tappx"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -132,7 +175,10 @@ module.exports.metadata =
     "cordova-plugin-apprate": "1.3.0",
     "cordova-plugin-globalization": "1.0.7",
     "cordova-plugin-themeablebrowser": "0.2.17",
-    "cordova-plugin-splashscreen": "4.0.3"
+    "cordova-plugin-splashscreen": "4.0.3",
+    "cordova-admob": "4.1.16",
+    "cordova-connectivity-monitor": "1.2.2",
+    "phonegap-admob": "4.1.15"
 }
 // BOTTOM OF METADATA
 });

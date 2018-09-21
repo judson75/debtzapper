@@ -27,9 +27,10 @@
     <plugin name="cordova-plugin-console" spec="~1.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="~1.0.1" />
     <plugin name="phonegap-plugin-push" source="npm" spec="~1.8.0">
+    	<variable name="SENDER_ID" value="1058444389453" />
+	</plugin>
     <plugin name="cordova-plugin-apprate" />
-        <variable name="SENDER_ID" value="1058444389453" />
-    </plugin>
+    <plugin name="phonegap-admob" source="npm"/>
     <platform name="android">
         <preference name="android-minSdkVersion" value="14" />
         <preference name="SplashScreen" value="screen"/>
